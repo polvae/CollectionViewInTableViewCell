@@ -36,6 +36,8 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self buildSubViews];
         self.backgroundColor = KColor(243, 247, 251);
+        self.contentView.frame = self.bounds;
+        self.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     return self;
 }
@@ -112,7 +114,6 @@
     _modelArr = modelArr;
     [self.collectionView reloadData];
      [self reloadCell];
- 
 }
 
 - (void)reloadCell{
@@ -120,9 +121,9 @@
     } completion:^(BOOL finished) {
         [self.collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(self.flowLayout.collectionViewContentSize.height);
+            make.width.mas_equalTo(KScreenWidth - 20);
         }];
     }];
 }
-
 
 @end

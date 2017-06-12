@@ -46,6 +46,7 @@
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view).width.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
+    self.tableView.estimatedRowHeight = 300;
 }
 
 - (void)requestDate{
@@ -111,5 +112,11 @@
     return view.collectionViewLayout.collectionViewContentSize.height + 20;
 }
 
-
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    
+//    [_collectionView setCollectionViewLayout:[self collectionViewFlowLayoutForOrientation:toInterfaceOrientation] animated:YES];
+    [self.tableView reloadData];
+}
 @end
